@@ -19,5 +19,5 @@ Change JS to PHP in the previous pokemon challenge
 
 - [X] Need to Check how I can print the user input on the DOMDocument through PHP
 	- https://www.w3schools.com/php/php_xml_dom.asp and https://css-tricks.com/building-a-form-in-php-using-domdocument/
-	- Made a new DOMDocument and created elements <h1> and <h2> to afterwards append to the Document. 
+	- Made a new DOMDocument and created elements and afterwards append to the Document. 
 
