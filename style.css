@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    height: 100vh;
+    background-color: antiquewhite;
+}
+
+h1{
+    font-family: 'Tapestry', cursive;
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    background-color: firebrick;
+    color: white;
+}
+
+h2{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 18px;
+}
+
+h3{
+    font-family: 'Life Savers', cursive;
+}
+
+p{
+    font-family: 'Averia Gruesa Libre', cursive;
+    font-size: 25px;
+}
+.name, .id, .sprites, .abilities{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#container-all{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+}
+
+#stats, #stats-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    flex-direction: column;
+    border: black solid 1px;
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+
+}
+
+#stats:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    background-color: whitesmoke;
+}
+
+#stats-container{
+    position: absolute;
+    height: 50%;
+    width: 45%;
+    left: 30%;
+    background-color: whitesmoke;
+    margin-top: 100px;
+}
+
+#search-container, .card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+
+}

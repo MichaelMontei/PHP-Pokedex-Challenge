@@ -5,6 +5,14 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tapestry&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Tapestry&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Life+Savers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Gruesa+Libre&family=Life+Savers&display=swap"
+          rel="stylesheet">
     <title>Pokedex</title>
 </head>
 <body>
@@ -17,56 +25,20 @@ if(isset($_POST['btn1'])) {
 //    $api_url2 = "https://pokeapi.co/api/v2/pokemon-form/1/";
     $pokemon_data = json_decode(file_get_contents($api_url), true);
     $name_pokemon = "Name of the pokemon: " .$pokemon_data['forms']['0']['name'];
+    $name_pokemon2 = $pokemon_data['forms']['0']['name'];
     $id_pokemon = " ID: " .$pokemon_data['id'];
     $pokemon_picture = $pokemon_data['sprites']['front_default'];
     $pokemon_abilities1 = "Abilities: " .$pokemon_data['abilities']['0']['ability']['name'];
-    $pokemon_abilities2 = $pokemon_data['abilities']['1']['ability']['name'];
-
-//echo "<pre>";
-//print_r($pokemon_data);
-
-////Get the ID of Bulbasaur and print it out
-//    $id_pokemon = $pokemon_data['id'];
-//    echo "The ID of the pokemon: " . $id_pokemon;
-////
-//    echo "<br>";
-////
-//////Get the name of Bulbasaur and print it out
-//    $name_pokemon = $pokemon_data['forms']['0']['name'];
-//    echo "The name is: " . $name_pokemon;
-//
-//    echo "<br>";
-//
-////Get the picture of the Bulbasaur and print it out
-//    echo "<img src= $pokemon_picture' >";
-
-//append all the items to the DOMDocument
-//name
-$document = new DOMDocument('1.0', 'utf-8');
-$name = $document->createElement('h1', $name_pokemon);
-$document->appendChild($name);
-
-$id_pokemon = $document->createElement('h2', $id_pokemon);
-$document->appendChild($id_pokemon);
-
-$pokemon_abilities1 = $document->createElement('h3', $pokemon_abilities1);
-$document->appendChild($pokemon_abilities1);
-    echo "<br>";
-
-$pokemon_abilities2 = $document->createElement('h3', $pokemon_abilities2);
-$document->appendChild($pokemon_abilities2);
-
-
-$img = $document->createElement('img', "");
-$attr = $document->createAttribute("src");
-$tnode = $document->createTextNode($pokemon_picture);
-$attr->appendChild($tnode);
-$img->appendChild($attr);
-$document->appendChild($img);
-
-echo $document->saveXML();
+    $pokemon_abilities2 = "Abilities: " .$pokemon_data['abilities']['1']['ability']['name'];
+    $pokemon_moves = "Moves: " .$pokemon_data['moves']['0']['move']['name'];
+    //$test = $pokemon_data['moves'][$i]['move']['name'];
+    //echo "<pre>";
+    //print_r($pokemon_data);
 }
 ?>
+
+
+
 
 <div id="container">
     <h1>Pokedex</h1>
@@ -79,18 +51,57 @@ echo $document->saveXML();
         </form>
     </div>
 
-    <div class="card">
-        <div id="test-container">
-            <div id="name-container">
-                <h2 class="name"></h2>
-                <h2 class="id"></h2>
-                <div class="sprites"></div>
+    <div id="stats-container">
+        <div class="stats">
+            <h2 class="name">
+                <?php
+                if (isset($_POST['input'])) {
+                    echo "Name: " .$name_pokemon2;
+                }
+                ?>
+            </h2>
+            <br>
+            <h2 class="id">
+                <?php
+                if (isset($_POST['input'])) {
+                    echo $id_pokemon;
+                }
+                ?>
+            </h2>
+            <div class="sprites">
+                <img src="<?php
+                if (isset($_POST['input'])) {
+                    echo $pokemon_picture;
+                }
+                ?>">
             </div>
-            <div id="abilities-container">
-                <p class="abilities"></p>
-                <p class="moves"></p>
-                <p class="types"></p>
-            </div>
+            <p class="abilities">
+                <?php
+                if (isset($_POST['input'])) {
+                    echo $pokemon_abilities1;
+                    echo "<br>";
+                    echo $pokemon_abilities2;
+                }
+                ?>
+            </p>
+            <p class="moves">
+                <?php
+                if (isset($_POST['input'])) {
+
+                    if (count($pokemon_data['moves']) > 1 ){
+                        for ($i=0; $i<=4;$i++){
+                            print_r("Moves: " .$pokemon_data['moves'][$i]['move']['name']);
+                        }
+                    } else if (count($pokemon_data['moves']) === 1){
+                        print_r($pokemon_moves);
+                    }
+                }
+                ?>
+            </p>
+            <p class="types"></p>
+            <p class="evolution"></p>
+            <div class="evoSprites1"></div>
+            <div class="evoSprites2"></div>
         </div>
     </div>
 
